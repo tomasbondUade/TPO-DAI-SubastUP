@@ -8,6 +8,7 @@ import { COLORS } from '../constants/colors';
 
 import AuthNavigator  from './AuthNavigator';
 import TabNavigator   from './TabNavigator';
+import SplashScreen   from '../screens/SplashScreen';
 
 // Stacks que viven fuera de los tabs (pantallas de detalle)
 import AuctionDetailScreen from '../screens/auction/AuctionDetailScreen';
@@ -32,11 +33,7 @@ export default function AppNavigator() {
   }, []);
 
   if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: COLORS.white }}>
-        <ActivityIndicator size="large" color={COLORS.primary} />
-      </View>
-    );
+    return <SplashScreen />;
   }
 
   return (
