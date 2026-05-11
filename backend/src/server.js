@@ -7,8 +7,8 @@ app.listen(PORT, () => {
   console.log(`
   ╔══════════════════════════════════════╗
   ║   SubastUP API                       ║
-  ║   http://localhost:${PORT}           ║
-  ║   Entorno: ${process.env.NODE_ENV}   ║
+  ║   http://localhost:${PORT}              ║
+  ║   Entorno: ${process.env.NODE_ENV}          ║
   ╚══════════════════════════════════════╝
   `);
 });

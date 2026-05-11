@@ -4,16 +4,16 @@
     "slug": "subastup",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/Logo_SubastUP.jpeg",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/images/banner_subastup.jpeg",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#FFFFFF"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/Logo_SubastUP.jpeg",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.dai.subastup",
