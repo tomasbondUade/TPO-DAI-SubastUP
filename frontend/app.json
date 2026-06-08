@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "SubastUP",
+    "slug": "SubastUP",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon_SubastUP.jpeg",
+    "userInterfaceStyle": "light",
+
+    "splash": {
+      "image": "./assets/icon_SubastUP.jpeg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon_SubastUP.jpeg",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/icon_SubastUP.jpeg"
+    }
+  }
+}
