@@ -424,3 +424,57 @@ exports.rechazarProducto = async (req, res) => {
     return res.status(500).json({ ok: false, message: 'Error al rechazar el producto.' });
   }
 };
+
+// ─────────────────────────────────────────────────────────────
+// GET /api/productos/mis-articulos-en-subastas
+// Lista solo los productos en estado 'confirmado' (ya en subasta)
+// ─────────────────────────────────────────────────────────────
+exports.misArticulosEnSubastas = async (req, res) => {
+  try {
+    const { personaId } = req.user;
+
+    const productos = await prisma.productos.findMany({
+      where:   { duenio: personaId, estado: 'confirmado' },
+      orderBy: { fecha: 'desc' },
+      include: {
+        fotos: { take: 1 },
+        itemsCatalogo: {
+          select: {
+            precioBase:   true,
+            comision:     true,
+            moneda:       true,
+            fechaSubasta: true,
+            horaSubasta:  true,
+            lugarSubasta: true,
+            subastado:    true,
+          },
+        },
+      },
+    });
+
+    const resultado = productos.map((p) => {
+      const foto      = p.fotos?.[0]?.foto;
+      const propuesta = p.itemsCatalogo?.[0] || null;
+
+      return {
+        productoId:          p.identificador,
+        nombre:              p.nombre,
+        descripcionCompleta: p.descripcionCompleta,
+        portada:             foto ? Buffer.from(foto).toString('base64') : null,
+        precioBase:          propuesta?.precioBase   || null,
+        comision:            propuesta?.comision     || null,
+        moneda:              propuesta?.moneda       || 'ARS',
+        fechaSubasta:        propuesta?.fechaSubasta || null,
+        horaSubasta:         propuesta?.horaSubasta  || null,
+        lugarSubasta:        propuesta?.lugarSubasta || null,
+        subastado:           propuesta?.subastado    || 'no',
+      };
+    });
+
+    return res.json({ ok: true, articulos: resultado });
+
+  } catch (err) {
+    console.error('misArticulosEnSubastas error:', err);
+    return res.status(500).json({ ok: false, message: 'Error al obtener tus artículos en subastas.' });
+  }
+};
