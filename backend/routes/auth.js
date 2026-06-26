@@ -11,6 +11,8 @@ const {
   verifyCode,
   resetPassword,
   validateUser,
+  asignarCategoria,
+  pendientes,
   logout,
 } = require('../controllers/authController');
 
@@ -21,9 +23,11 @@ router.post('/forgot-password', forgotPassword);
 router.post('/verify-code',     verifyCode);
 router.post('/reset-password',  resetPassword);
 
-// ── Protegida (solo admin) ────────────────────────────────────
-// En producción agregá un middleware adicional que verifique el rol admin.
-router.post('/validate-user', auth, validateUser);
+// ── Protegida (solo admin/revisor) ────────────────────────────
+// validateUser y asignarCategoria verifican el rol internamente.
+router.post('/validate-user',    auth, validateUser);
+router.put('/asignar-categoria', auth, asignarCategoria);
+router.get('/pendientes',        auth, pendientes);
 
 // ── Protegida (usuario general) ───────────────────────────────
 router.post('/logout', auth, logout);
