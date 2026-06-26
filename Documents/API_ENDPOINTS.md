@@ -1,15 +1,15 @@
 # API Endpoints Canonicos - SubastUP
 
-Fuente de verdad: `backend/server.js` y `backend/routes/*`. Este documento esta normalizado con `SubastUp_API_Endpoints_v3_FINAL.xlsx`.
+Fuente de verdad: `backend/server.js` y `backend/routes/*`. Este documento esta normalizado con `SubastUp_API_Endpoints_v3_FINAL.xlsx` y con `docs/API_ENDPOINTS.md`.
 
 Regla: todo endpoint consumido por frontend, WebAdmin o documentacion debe usar estos paths completos con prefijo `/api`, salvo `/health`.
 
 ## Base URLs
 
 - Backend publico: `https://tpo-dai-subastup.onrender.com`
-- Backend local opcional: `http://localhost:3000`
+- Backend local opcional: `http://localhost:3001` si se usa el `.env` local documentado, o `http://localhost:3000` si no se define `PORT`
 - WebAdmin local: `http://127.0.0.1:5173`
-- WebAdmin usa `VITE_API_URL` y por defecto apunta al mismo backend publico que la app movil.
+- WebAdmin usa `VITE_API_URL` y por defecto apunta a `http://localhost:3001`.
 
 ## Endpoints
 
@@ -76,6 +76,8 @@ Regla: todo endpoint consumido por frontend, WebAdmin o documentacion debe usar 
 | 59 | `GET` | `/api/settings` | Configuracion | No | Obtener configuracion simple |
 | 60 | `PUT` | `/api/settings` | Configuracion | No | Actualizar configuracion simple |
 | 61 | `GET` | `/api/help/faq` | Ayuda | No | Listar preguntas frecuentes |
+| 62 | `POST` | `/api/dev/reseed` | Desarrollo | DEV_KEY | Reiniciar y cargar datos demo |
+| 63 | `GET` | `/api/dev/db` | Desarrollo | DEV_KEY | Ver conteos y datos demo sin imagenes |
 
 ## Endpoints usados por WebAdmin
 
@@ -95,4 +97,5 @@ Regla: todo endpoint consumido por frontend, WebAdmin o documentacion debe usar 
 
 - Rutas antiguas `/api/chat`, `/api/productos`, `/api/pagos`, `/auth/*`, `/products/*` sin prefijo no deben usarse.
 - `frontend/src/constants/api.js` ya usa los paths canonicos para la app movil.
-- `WebAdmin/App.jsx` usa los paths canonicos, apunta por defecto al backend publico y permite cambiar backend con `VITE_API_URL`.
+- `WebAdmin/App.jsx` usa los paths canonicos, apunta por defecto a `http://localhost:3001` y permite cambiar backend con `VITE_API_URL`.
+- `/api/dev/*` no usa JWT: valida `DEV_KEY` por query `?clave=` o header `x-dev-key`.
