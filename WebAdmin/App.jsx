@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
 // ── Configuración ──────────────────────────────────────────────
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://tpo-dai-subastup.onrender.com'
 
 // ── Colores SubastUp ───────────────────────────────────────────
 const C = {
